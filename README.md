@@ -1,3 +1,3 @@
-## My personal website
+## Personal website
 
 Change to readme
