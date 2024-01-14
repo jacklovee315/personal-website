@@ -8,8 +8,8 @@
     </div>
 
     <ul class="space-y-5">
-        @if(count($posts))
-            @foreach($posts as $post)
+        @if(count($this->posts))
+            @foreach($this->posts as $post)
                 <x-ui.post-card :post="$post"/>
             @endforeach
         @else
@@ -20,6 +20,6 @@
     </ul>
 
     <div class="my-8">
-        {{ $posts->links(data: ['scrollTo' => false]) }}
+        {{ $this->posts->links(data: ['scrollTo' => false]) }}
     </div>
 </div>

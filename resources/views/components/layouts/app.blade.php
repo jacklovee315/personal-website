@@ -11,26 +11,13 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 
-<body class="px-4 md:px-2 mx-auto flex flex-col max-w-4xl">
+<body class="px-4 mx-auto flex flex-col max-w-4xl">
 
-<nav class="my-10 flex justify-between items-center">
-    <a href="{{route('about')}}" wire:navigate class="text-bold text-xl">
-        Jack love
-    </a>
+    @include('components.layouts.partials.nav')
 
-    <ul class="space-x-10 justify-end hidden sm:flex">
-        <x-elements.list-item name="about"/>
-        <x-elements.list-item name="posts"/>
-    </ul>
-
-    <div class="sm:hidden">
-        <x-heroicon-o-bars-3 class="w-6"/>
+    <div>
+        {{ $slot }}
     </div>
-</nav>
-
-<div>
-    {{ $slot }}
-</div>
 
 @livewireScriptConfig
 </body>

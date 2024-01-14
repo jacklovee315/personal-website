@@ -3,6 +3,7 @@
 namespace App\Livewire\Components;
 
 use App\Models\Post;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,9 +13,13 @@ class PostsList extends Component
 
     public ?string $search = null;
 
-    public function mount(): void
+    #[Computed]
+    public function posts()
     {
-        sleep(rand(1, 2));
+        return Post::query()
+                   ->where('title', 'like', '%' . $this->search . '%')
+                   ->visible()
+                   ->simplePaginate(5);
     }
 
     public function updatedSearch(): void
@@ -29,11 +34,6 @@ class PostsList extends Component
 
     public function render()
     {
-        return view('livewire.components.posts-list', [
-            'posts' => Post::query()
-                           ->where('title', 'like', '%' . $this->search . '%')
-                           ->visible()
-                           ->simplePaginate(5),
-        ]);
+        return view('livewire.components.posts-list');
     }
 }
